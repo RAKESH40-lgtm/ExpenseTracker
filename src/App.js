@@ -7,6 +7,7 @@ import CollectExpensesData from "./Components/NewExpenses/CollectExpensesData";
 
 function App() {
   const [array,setArray]=useState(expenses)
+  console.log(array)
   const addingExpenseHandler=(expense)=>{
     console.log("in App")
      setArray((prevState)=>{

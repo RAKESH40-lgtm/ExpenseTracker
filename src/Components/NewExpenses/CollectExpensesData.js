@@ -1,14 +1,14 @@
 import { useState } from 'react'
 import ExpenseForm from './ExpenseForm'
 import './NewExpenses.css'
-const CollectExpensesData=(props)=>{
+const CollectExpensesData=({onAddingExpense})=>{
   const [isShow,setShow]=useState(false)
   const saveExpenseHandler=(enteredExpenseData)=>{
         const expenseData={
-          ...enteredExpenseData,id:Math.floor(Math.random()*1)
+          ...enteredExpenseData,id:Date.now()
         }
         // console.log(expenseData)
-        props.onAddingExpense(expenseData)
+        onAddingExpense(expenseData)
         setShow(false)
  }
  const startEditingHandler=()=>{

@@ -1,9 +1,9 @@
 import ShowChart from "../Chart/ShowChart";
 import { chartDataPoints } from "../utils/metadata";
 
-const ExpenseChart=(props)=>{
+const ExpenseChart=({expenses})=>{
    
-    for(const expense of props.expenses){
+    for(const expense of expenses){
         const expenseMonth=expense.date.getMonth()
         chartDataPoints[expenseMonth].value+=expense.amount;
     }

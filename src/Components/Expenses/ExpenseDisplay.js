@@ -4,55 +4,23 @@ import ExpensesFilter from './ExpenseFilter'
 import { useState } from 'react'
 import ExpenseList from './ExpensesList'
 import ExpenseChart from './ExpenseChart'
-function ExpenseDisplay(props) {
-    const [filteredDate, setFilteredDate] = useState('')
-    const filterDateHandler = (recieveddate) => {
-        setFilteredDate(recieveddate)
+function ExpenseDisplay({ item }) {
+
+    const [filteredDate, setFilteredDate] = useState(new Date().getFullYear().toString())
+    const filterDateHandler = (receivedDate) => {
+        setFilteredDate(receivedDate)
     }
-    const filteredExpense = props.item.filter((expense) => {
-        return expense.date.getFullYear().toString() === filteredDate
+    const filteredExpense = item?.filter((expense) => {
+        const date = expense.date instanceof Date ? expense.date : new Date(expense.date)
+        return date.getFullYear().toString() === filteredDate
     })
-    // let checkedExpense=<p>No item found</p>
-    // if(filteredExpense.length>0){
-    //    checkedExpense= filteredExpense.map((expense) => {
-    //         return (
-    //             <ExpenseItem 
-    //             key={expense.id}
-    //             title={expense.title} 
-    //             date={expense.date} 
-    //             amount={expense.amount} />
-    //         )
-    //     })
-    // }//to make lean approach
+    console.log(filteredExpense)
     return (
         <div>
             <div className="expenses">
-                <ExpensesFilter onGettingFilter={filterDateHandler}
-                />
-                {/* {filteredExpense.length===0?(<p>No item found</p>):
-                (filteredExpense.map((expense) => {
-                        return (
-                            <ExpenseItem 
-                            key={expense.id}
-                            title={expense.title} 
-                            date={expense.date} 
-                            amount={expense.amount} />
-                        )
-                    }))
-                } */}
-                {/* {filteredExpense.length === 0 && (<p>No item found</p>)}
-                {filteredExpense.length > 0 && filteredExpense.map((expense) => {
-                    return (
-                        <ExpenseItem
-                            key={expense.id}
-                            title={expense.title}
-                            date={expense.date}
-                            amount={expense.amount} />
-                    )
-                })} */}
-               {/* {checkedExpense} */}
-               <ExpenseChart expenses={filteredExpense}/>
-               <ExpenseList expenseItem={filteredExpense}/>
+                {/* <ExpensesFilter onGettingFilter={filterDateHandler} expenseData={item} /> */}
+                <ExpenseChart expenses={item} />
+                <ExpenseList expenseItem={item} />
             </div>
         </div>
     )

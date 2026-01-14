@@ -1,15 +1,15 @@
 // import Card from '../UI/Card'
 import ExpenseDate from './ExpenseDate'
 import './ExpenseItem.css'
-function ExpenseItem(props) {
+function ExpenseItem({id ,date , title , amount}) {
   
     return (
-        <li>
+        <li key={id}>
         <div className='expense-item' >
-            <ExpenseDate date={props.date} />
+            <ExpenseDate date={date} />
             <div className='expense-item__description'>
-                <h2>{props.title}</h2>
-                <div className='expense-item__price'>₹{props.amount}</div>
+                <h2>{title}</h2>
+                <div className='expense-item__price'>₹{amount}</div>
             </div>
         </div>
         </li>
